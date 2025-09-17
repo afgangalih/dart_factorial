@@ -1,4 +1,4 @@
-// factorial.dart - versi interaktif
+// factorial.dart - interaktif + validasi
 import 'dart:io';
 
 int factorial(int n) {
@@ -10,8 +10,19 @@ int factorial(int n) {
 }
 
 void main() {
-  stdout.write("Masukkan bilangan: ");
+  stdout.write("Masukkan bilangan bulat >= 0: ");
   final input = stdin.readLineSync();
-  final n = int.parse(input!); // belum ada validasi
+
+  if (input == null) {
+    print("Input kosong.");
+    return;
+  }
+
+  final n = int.tryParse(input);
+  if (n == null || n < 0) {
+    print("Input tidak valid.");
+    return;
+  }
+
   print("$n! = ${factorial(n)}");
 }
