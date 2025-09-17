@@ -1,4 +1,6 @@
-// factorial.dart - versi awal
+// factorial.dart - versi interaktif
+import 'dart:io';
+
 int factorial(int n) {
   int result = 1;
   for (int i = 2; i <= n; i++) {
@@ -8,6 +10,8 @@ int factorial(int n) {
 }
 
 void main() {
-  int n = 5;
-  print('$n! = ${factorial(n)}');
+  stdout.write("Masukkan bilangan: ");
+  final input = stdin.readLineSync();
+  final n = int.parse(input!); // belum ada validasi
+  print("$n! = ${factorial(n)}");
 }
