@@ -1,12 +1,17 @@
-// factorial.dart - interaktif + validasi
+// factorial.dart - interaktif + validasi + rekursif
 import 'dart:io';
 
-int factorial(int n) {
+int factorialIterative(int n) {
   int result = 1;
   for (int i = 2; i <= n; i++) {
     result *= i;
   }
   return result;
+}
+
+int factorialRecursive(int n) {
+  if (n <= 1) return 1;
+  return n * factorialRecursive(n - 1);
 }
 
 void main() {
@@ -24,5 +29,12 @@ void main() {
     return;
   }
 
-  print("$n! = ${factorial(n)}");
+  stdout.write("Gunakan metode rekursif? (y/n): ");
+  final method = stdin.readLineSync();
+
+  if (method != null && method.toLowerCase() == 'y') {
+    print("$n! (rekursif) = ${factorialRecursive(n)}");
+  } else {
+    print("$n! (iteratif) = ${factorialIterative(n)}");
+  }
 }
